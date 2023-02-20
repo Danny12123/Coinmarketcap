@@ -1,6 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv"
+import userRoutes from "./routes/Users.js";
+import videoRoutes from "./routes/videos.js";
+import commentRoutes from "./routes/comment.js";
+import auth from "./routes/auth.js";
 
 const app = express();  
 dotenv.config();
@@ -16,6 +20,14 @@ const connect = () => {
         throw err;
       });
 }
+
+app.use(express.json())
+app.use("/Story/Auth", auth)
+app.use("/Story/Users", userRoutes)
+app.use("/Story/Video", videoRoutes)
+app.use("/Story/Comment", commentRoutes)
+
+
 mongoose.set("strictQuery", false);
 
 app.listen(5000, ()=> {
