@@ -1,0 +1,18 @@
+.ads {
+    width: 93%;
+    height: 20vh;
+    background-color: black;
+    text-align: center;
+    margin: 20px auto;
+    border-radius: 5px;
+}
+.car_img {
+    width: 100%;
+    height: 20vh;
+    border-radius: 5px;
+
+}
+
+.news {
+    padding-left: 20px;
+}
