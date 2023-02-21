@@ -1,5 +1,5 @@
 import express from "express";
-import { signup } from "../controlles/auth.js";
+import { signin, signup } from "../controlles/auth.js";
 
 const router = express.Router();
 
@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/signup", signup);
 
 //SIGN IN
-router.post("/signin", )
+router.post("/signin", signin)
 
 
 
