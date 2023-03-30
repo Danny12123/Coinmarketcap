@@ -6,21 +6,32 @@ import { RiDraftLine } from "react-icons/ri";
 import { BiWallet } from "react-icons/bi";
 import { ImProfile } from "react-icons/im";
 import { IoIosArrowForward } from "react-icons/io";
+import {
+  AboutIcon,
+  DraftIcon,
+  HomeIcon,
+  ProfileIcon,
+  SettingIcon,
+  WalletIcon,
+  StoryIcon,
+  InboxIcon,
+  StakeIcon,
+} from "../Util/StoryIcon";
 
 export const SideBarData = [
   {
     path: "/",
     title: "Home",
-    icon: <FaHome />,
+    icon: <HomeIcon />,
   },
-  { title: "My Profile", path: "profile", icon: <ImProfile /> },
-  { title: "My Story", path: "story" },
-  { title: "Wallet", path: "wallet", icon: <BiWallet /> },
-  { title: "Stake", path: "stake", icon: <BiWallet /> },
-  { title: "Draft", path: "draft", icon: <RiDraftLine /> },
-  { title: "Inbox", path: "inbox" },
-  { title: "About story", path: "about", icon: <VscGraph /> },
-  { title: "Setting", path: "setting", icon: <AiFillSetting /> },
+  { title: "My Profile", path: "profile", icon: <ProfileIcon /> },
+  { title: "My Story", path: "story", icon: <StoryIcon /> },
+  { title: "Wallet", path: "wallet", icon: <WalletIcon /> },
+  { title: "Stake", path: "stake", icon: <StakeIcon /> },
+  { title: "Draft", path: "draft", icon: <DraftIcon /> },
+  { title: "Inbox", path: "inbox", icon: <InboxIcon /> },
+  { title: "About story", path: "about", icon: <AboutIcon /> },
+  { title: "Setting", path: "setting", icon: <SettingIcon /> },
 ];
 
 export const SmBarData = [
@@ -36,25 +47,12 @@ export const SmBarData = [
     icon: <ImProfile />,
     arrow: <IoIosArrowForward />,
   },
-  { title: "Message", icon: <ImProfile />, arrow: <IoIosArrowForward /> },
-  { title: "Transaction", icon: <ImProfile />, arrow: <IoIosArrowForward /> },
-  {
-    title: "Refer and Earn",
-    icon: <ImProfile />,
-    arrow: <IoIosArrowForward />,
-  },
-  { title: "Notification", icon: <ImProfile />, arrow: <IoIosArrowForward /> },
-  { title: "Security", icon: <ImProfile />, arrow: <IoIosArrowForward /> },
-  {
-    title: "Default Currency",
-    icon: <ImProfile />,
-    arrow: <IoIosArrowForward />,
-  },
-  { title: "NFTs", icon: <ImProfile />, arrow: <IoIosArrowForward /> },
-  {
-    title: "Join our community",
-    icon: <ImProfile />,
-    arrow: <IoIosArrowForward />,
-  },
-  { title: "Log Out", icon: <ImProfile />, arrow: <IoIosArrowForward /> },
+  { title: "My Story", path: "story", icon: <StoryIcon /> ,arrow: <IoIosArrowForward />,},
+  { title: "Wallet", path: "wallet", icon: <WalletIcon /> ,arrow: <IoIosArrowForward />,},
+  { title: "Stake", path: "stake", icon: <StakeIcon /> ,arrow: <IoIosArrowForward />,},
+  { title: "Draft", path: "draft", icon: <DraftIcon /> ,arrow: <IoIosArrowForward />,},
+  { title: "Inbox", path: "inbox", icon: <InboxIcon />,arrow: <IoIosArrowForward />, },
+  { title: "About story", path: "about", icon: <AboutIcon /> ,arrow: <IoIosArrowForward />,},
+  { title: "Setting", path: "setting", icon: <SettingIcon />,arrow: <IoIosArrowForward />, },
+  { title: "Log Out", icon: <ImProfile />, arrow: <IoIosArrowForward />,arrow: <IoIosArrowForward />, },
 ];

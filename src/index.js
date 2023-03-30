@@ -5,16 +5,25 @@ import App from './App';
 import {
   BrowserRouter
 } from "react-router-dom";
-import { Provider } from 'react-redux/es/exports';
-import store from './Redux/Store/Store';
+import { PostContext, PostContextProvider } from './Context/PostContext';
+import { AuthContextProvider } from './Context/AuthContext';
+import store, {persistor} from './Redax/Store';
+import { Provider } from "react-redux";
+import {PersistGate} from 'redux-persist/integration/React';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <PostContextProvider>
+        <AuthContextProvider>
+          <Provider store={store}>
+            <PersistGate persistor={persistor}>
+              <App />
+            </PersistGate>
+          </Provider>
+        </AuthContextProvider>
+      </PostContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -1,114 +1,142 @@
-import React, {useState} from 'react';
-import NavBar from '../Component/NavBar';
+import React, { useContext, useEffect, useState } from "react";
+import NavBar from "../Component/NavBar";
 import "../Styles/profile.css";
-import { FaAd, FaCamera, FaReceipt, FaSeedling } from "react-icons/fa";
-import { Link } from 'react-router-dom';
-import ProfilRouter from '../Routers/ProfilRouter';
+// import { FaAd, FaCamera, FaReceipt, FaSeedling } from "react-icons/fa";
+import {
+  FaAd,
+  FaCamera,
+  FaPhotoVideo,
+  FaReceipt,
+  FaSeedling,
+} from "react-icons/fa";
 
-const Profile = () => {
-  const [profileImg1, setProfileImg1] = useState("./image/profile.jpg");
-  const [profileImg2, setProfileImg2] = useState("./image/thumbnail.jpg");
+import { Link } from "react-router-dom";
+import ProfilRouter from "../Routers/ProfilRouter";
+import { GrClose } from "react-icons/gr";
+import ProfileHeader from "../Holder/ProfileHeader";
+import ProfileInfo from "../Holder/ProfileH/ProfileInfo";
+import ProfileStory from "../Holder/ProfileH/ProfileStory";
+import MyStories from "../Component/MyStories";
+import MyFavouSto from "../Component/MyFavouSto";
+import Completed from "../Component/Completed";
+import axios from "axios";
+import { useParams } from "react-router";
+import Postcontent from "../Component/Postcontent";
+import { AuthContext } from "../Context/AuthContext";
+
+const Profile = ({ recentActive, setRecentActive }) => {
+  const [uploadStory, setUploadStory] = useState("");
+  const [uploadStoryVideo, setUploadStoryVideo] = useState("");
   const [profileNavActive, setProfileNavActive] = useState(false);
+  // const [userpost, setUserpost] = useState([]);
+  const [isActive, setIsActive] = useState(false);
+
+  const username = useParams();
+  const {user} = useContext(AuthContext);
+  // console.log(user.username);
+  const upload = () => {
+    setIsActive(!isActive);
+    setUploadStory("");
+  };
+  //for uploading a stroy
+  const uploadImaVid = (e) => {
+
+    setUploadStory(e.target.files[0]);
+  };
+
   const showActiev = () => {
     setProfileNavActive(!profileNavActive);
-  }
-   const imageHandler1 = (e) => {
-     const reader = new FileReader();
-     reader.onload = () => {
-       if (reader.readyState === 2) {
-         setProfileImg1(reader.result);
-       }
-     };
-     console.log(reader)
-     reader.readAsDataURL(e.target.files[0]);
-   };
-   const imageHandler2 = (e) => {
-     const reader = new FileReader();
-     reader.onload = () => {
-       if (reader.readyState === 2) {
-         setProfileImg2(reader.result);
-       }
-     };
-     console.log(reader)
-     reader.readAsDataURL(e.target.files[0]);
-   };
+  };
+
+  //toggle tabs
+  const [toggleTabs, setToggleTabs] = useState(1);
+  const toggleTab = (index) => {
+    setToggleTabs(index);
+  };
+  const [userBox, setUserBox] = useState({});
+  useEffect(() => {
+    const fetchUser = async () => {
+        const resp = await axios.get(`/users?username=${username}`);
+        setUserBox(resp.data);
+      
+      // console.log(resp.data)
+      
+    };
+    fetchUser();
+  }, [user.username]);
+  
   return (
-    <div>
+    <div className="holder_wallet">
       <NavBar />
 
-      <section id="profile_header">
-        <div className="bg_wallet_header">
-          <img src={profileImg2} alt="" id="im2" />
-        </div>
-        <input
-          type="file"
-          name="image-thumbnail"
-          id="input"
-          onChange={imageHandler2}
-          accept="image/*"
-        />
-        <div id="edit">
-          <label htmlFor="input" className="image-upload edit_profile">
-            edit profile
-          </label>
-        </div>
-        <div className="wallet_profile_img">
-          <img src={profileImg1} alt="" id="im2" />
-        </div>
-        <input
-          type="file"
-          name="image-profile"
-          id="input2"
-          onChange={imageHandler1}
-          accept="image/*"
-        />
-        <div className="wallet_camera">
-          <label htmlFor="input2" className="image-upload">
-            <FaCamera className="fa_Camera" />
-          </label>
-          {/* <FaCamera /> */}
-        </div>
-      </section>
+      <ProfileHeader user={userBox} />
 
-      <section id="profile_info">
-        <div className="wa_info_name">
-          <h5>John Willow</h5>
-          <span> verified</span>
-        </div>
-        <div className="wa_info_dec">
-          <p>
-            @martiwillow <span>Wallet ID: 0x3466***3c9fe270491af8d</span> <br />
-            Father, <br /> Philantropist, <br /> building a Sustainable future
-          </p>
-          <div className="wa_info_btn">
-            <button className="wa_btn_1">New Story</button>
-            <button className="wa_btn_2">My Wallet</button>
-          </div>
-        </div>
-      </section>
+      <ProfileInfo
+        // userpost={userpost}
+        user={userBox}
+        recentActive={recentActive}
+        setRecentActive={setRecentActive}
+        upload={upload}
+      />
 
-      <section id="profile_route">
-        <div className="profile_nav">
-          <h6
-            onClick={showActiev}
-            className={
-              profileNavActive
-                ? "profile_nav_h profile_active"
-                : "profile_nav_h"
-            }
+      <section id="profile_rout">
+        <div className="pro_rut_container">
+          <h5
+            className={toggleTabs === 1 ? "tabsActive" : ""}
+            onClick={() => toggleTab(1)}
           >
             My Stories
-          </h6>
-          <h6 className="profile_nav_h">Favourite Stories</h6>
-          <h6 className="profile_nav_h">Completed </h6>
+          </h5>
+          <h5
+            className={toggleTabs === 2 ? "tabsActive" : ""}
+            onClick={() => toggleTab(2)}
+          >
+            Favourite Stories
+          </h5>
+          <h5
+            className={toggleTabs === 3 ? "tabsActive" : ""}
+            onClick={() => toggleTab(3)}
+          >
+            Completed
+          </h5>
         </div>
       </section>
 
       <section>
-        <ProfilRouter />
+        <div
+          className={
+            toggleTabs === 1 ? "my_stories pro_ro_active" : "pro_ro_disactive"
+          }
+        >
+          <Postcontent username={user.username} />
+          {/* <MyStories username="Danny1" /> */}
+        </div>
+        <div
+          className={
+            toggleTabs === 2 ? "favourite pro_ro_active" : "pro_ro_disactive"
+          }
+        >
+          <MyFavouSto />{" "}
+        </div>
+        <div
+          className={
+            toggleTabs === 3 ? "completed pro_ro_active" : "pro_ro_disactive"
+          }
+        >
+          <Completed />{" "}
+        </div>
       </section>
+
+      {/*To upload a story*/}
+      <ProfileStory
+        isActive={isActive}
+        uploadStory={uploadStory}
+        uploadStoryVideo={uploadStoryVideo}
+        upload={upload}
+        uploadImaVid={uploadImaVid}
+      />
     </div>
   );
-}
+};
 
-export default Profile
+export default Profile;

@@ -1,65 +1,134 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { ImOpt } from "react-icons/im";
 import "../Styles/signIn.css";
-import { Link, useNavigate  } from "react-router-dom";
-import { useUserAuth } from "../Context/UseAuthContext";
+import { Link, useNavigate } from "react-router-dom";
 import { Alert } from "bootstrap";
+import axios from "axios";
+import pic1 from ".././Img/44.jpeg";
+import pic2 from ".././Img/33.jpeg";
+import pic3 from ".././Img/55.jpeg";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/react-splide/css";
+import { StoryLogo } from "../Util/StoryIcon";
+// import {useHistory} from "react-router-dom";
 
-const SignUp = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [idNumber, setIdNumber] = useState("");
-    const [err, setErr] = useState("");
-    const {signUp} = useUserAuth();
-    const navigate = useNavigate();
+const SignUp = ({
+  signUpHandler,
+  username,
+  password,
+  email,
+  idNumber,
+  msg,
+}) => {
+  const [err, setErr] = useState("");
 
-    const signUpHandler = async(e) => {
-        e.preventDefault();
-        try {
-          await signUp(email, password)
-          navigate("/signin");
-        }catch (err) {
-          setErr(err.message)
-        }
+  // const {signUp} = useUserAuth();
+  // const navigate = useNavigate();
+  // const email = useRef();
+  // const password = useRef();
+  // const username = useRef();
+  // const idNumber = useRef();
+  // const history = useHistory();
 
-        // console.log({email, password, idNumber})
-        setEmail("");
-        setPassword("");
-        setIdNumber("");
-        setErr("")
-    }
+  // const signUpHandler = async (e) => {
+  //   e.preventDefault();
+  //   const user = {
+  //     username: username.current.value,
+  //     email: email.current.value,
+  //     password: password.current.value,
+  //     idNumber: idNumber.current.value,
+  //   };
+  //   try {
+  //     const res = await axios.post("/auth/signup", user);
+  //     setMsg(res.data);
+  //     if (res.ok) {
+  //       setMsg("Email sent successfully");
+  //     } else {
+  //       setMsg("Error sending email");
+  //     }
+  //     navigate("/verification");
+  //     // history.push("/signin")
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  //   try {
+  //     await axios.post("/auth/send-verification-email", { username, email });
+  //   } catch (err) {}
+  // };
+  // const signUpHandler = async(e) => {
+  //     e.preventDefault();
+  //     dispatch(loginStart())
+  //     try {
+  //       await signUp(email, password)
+  //       // navigate("/signin");
+  //       const reson = await axios.post("/Auth/signup", {
+  //         name,
+  //         password,
+  //         email,
+  //         idNumber,
+  //       });
+  //       dispatch(loginSuccess(reson.data));
+  //       navigate("/signin")
+  //       // console.log(reson.data)
+  //     }catch (err) {
+  //       dispatch(loginFailure())
+  //     }
+  //     setEmail("");
+  //     setName("");
+  //     setPassword("");
+  //     setIdNumber("");
+  //     setErr("")
+  // }
   return (
     <div className="sign">
       <div id="sign_input">
         <div className="sign_content">
           <div>
             <div className="sign_logo">
+              {/* <StoryLogo /> */}
               <img src="./image/logo.jpeg" alt="image" />
               <h3>Story</h3>
             </div>
             <div className="sign_holder">
               <p>Sign up for an account</p>
-              {err && <Alert variant="danger">{err }</Alert>}
-              <form>
+              {msg && <p>{msg}</p>}
+              <form onSubmit={signUpHandler}>
+                <input
+                  type="text"
+                  ref={username}
+                  required
+                  placeholder="Enter username"
+                />
                 <input
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  ref={email}
                   placeholder="Enter address"
+                  required
                 />
                 <input
                   type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  ref={password}
                   placeholder="Password"
+                  required
+                  minLength="6"
                 />
                 <input
-                  type="number"
-                  value={idNumber}
-                  onChange={(e) => setIdNumber(e.target.value)}
+                  type="text"
+                  ref={idNumber}
+                  required
                   placeholder="Enter referral ID"
                 />
-                <button onClick={signUpHandler}>Create your account</button>
+                {err && (
+                  <div>
+                    <p>{err}</p>
+                  </div>
+                )}
+                {msg && (
+                  <div>
+                    <p>{msg}</p>
+                  </div>
+                )}
+                <button>Create your account</button>
               </form>
             </div>
             <p className="p-c">
@@ -72,17 +141,28 @@ const SignUp = () => {
                 <Link to="/signin">
                   <a> Sign in</a>
                 </Link>
-                  
               </span>
             </p>
           </div>
         </div>
         <div className="sign_slider">
-          <div className="sign_slider_holder"></div>
+          <div className="sign_slider_holder">
+            <Splide aria-label="My Favorite Images">
+              <SplideSlide>
+                <img src={pic1} className="car_img_sign" alt="Image 1" />
+              </SplideSlide>
+              <SplideSlide>
+                <img src={pic2} className="car_img_sign" alt="Image 2" />
+              </SplideSlide>
+              <SplideSlide>
+                <img src={pic3} className="car_img_sign" alt="Image 2" />
+              </SplideSlide>
+            </Splide>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default SignUp
+export default SignUp;

@@ -15,7 +15,7 @@ import { UserAuthContextProvider } from './Context/UseAuthContext';
 const App = () => {
   return (
     <div className="app">
-      {/* <BasePage /> */}
+      
       {/* <SignIn /> */}
       {/* <SignUp /> */}
       {/* <VerifyAc /> */}
@@ -23,9 +23,10 @@ const App = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
       </Routes> */}
-      <UserAuthContextProvider>
-      <Router />
-      </UserAuthContextProvider>
+      {/* <UserAuthContextProvider> */}
+          <BasePage />
+        
+      {/* </UserAuthContextProvider> */}
     </div>
   );
 }

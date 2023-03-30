@@ -10,11 +10,11 @@ import Home from '../Pages/Home'
 const Router = () => {
   return (
     <div>
-        <BasePage />
-        {/* <ProtectedRoute>
+      {/* <BasePage /> */}
+      {/* <ProtectedRoute>
             </ProtectedRoute> */}
-      </div>
-
+            
+    </div>
   );
 }
 

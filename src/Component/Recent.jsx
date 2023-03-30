@@ -6,9 +6,12 @@ import pic2 from '../Img/33.jpeg'
 import pic3 from '../Img/55.jpeg'
 import pic4 from '../Img/77.jpeg'
 
+
 const Recent = () => {
   return (
     <div>
+      <div >
+
       <div className="heder-trend">
         <h6>Favourite Campaign</h6>
       </div>
@@ -50,6 +53,9 @@ const Recent = () => {
           </div>
         </div>
       </div>
+      
+      </div>
+
     </div>
   );
 }

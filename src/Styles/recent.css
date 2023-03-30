@@ -5,8 +5,8 @@
     width: 100%;
 }
 .heder-trend h6 {
-    font-weight: 500;
-    font-size: 20px;
+    font-weight: 400;
+    font-size: 18px;
     margin: 0;
 }
 .sor {
@@ -42,15 +42,18 @@
 .recent_box .recent_box_conten .recent-header h6 {
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(164, 160, 160);
+    font-size: 12px;
 }
 #rec_con_holder {
-    margin: 0 10px 0 60px;
+    margin: 0 10px 0 40px;
 }
 #rec_con_holder h2 {
     margin: 0;
+    font-size: 15px;
 }
 #rec_con_holder p {
-    margin: 10px 0;
+    margin: 5px 0;
+    font-size: 12px;
     color: rgb(164, 160, 160);
 }
 .recent-img {
