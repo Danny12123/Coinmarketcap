@@ -102,15 +102,16 @@ const MyMessages = () => {
     try {
       const res = await axios.post("/message", messageh);
       setMessage([...message, res.data]);
+      setMessageNew("");
     } catch (err) {
       console.log(err)
     }
-    setMessageNew("");
+    
   };
 
   //  const [searchQuery, setSearchQuery] = useState('');
   // const [searchResults, setSearchResults] = useState([]);
-  const [ismodal, setIsmodal] = useState(false);
+  const [ismodal, setIsmodal] = useState(true);
   const openModalHandler = () => {
     setIsmodal();
   }
@@ -149,7 +150,7 @@ const newConversation = async (item) => {
     receiverId: item._id
   };
   const res = await axios.post("/conversation", newConversation);
-
+  
   setSearchQuery("")
   // console.log(res)
 }
@@ -189,7 +190,7 @@ const newConversation = async (item) => {
               {/* <button onClick={handleSearch}>Search</button> */}
             </div>
 
-            {conversation.length >= 0 ? (
+            {conversation.length <= 0 ? (
               <h3 style={{ margin: "35px auto" }}>Search for a user now!</h3>
             ) : (
               conversation.map((item, index) => {
@@ -294,22 +295,22 @@ const newConversation = async (item) => {
           </div>
         </div>
       </div>
-      <div className="search_box">
+      {searchResults.length >0 ? <div className={ismodal ? "search_box" : "disactive_box"}>
         {searchResults.map((item, index) => {
           return (
-            <div
-              className="new_m_box"
-              key={item._id}
-              onClick={() => newConversation(item)}
-            >
+            <div className="new_m_box" key={item._id}>
               {/* <div className="new-img-box">
                 <img src={item.profilePicture || ProfileImage} alt="" />
               </div> */}
-              <h6>{item.username}</h6>
+              <h6 onClick={() => {
+                newConversation(item)
+                setIsmodal(!ismodal);
+                }}>{item.username}</h6>
             </div>
           );
         })}
-      </div>
+      </div> : null}
+      
       {/* {searchResults.length <=1 ? <div className="new_conv_box">
         {searchResults.map((item, index) => {
           return (

@@ -62,15 +62,15 @@ const NavBar = ({socket}) => {
   }, []);
 
   const handleScroll = () => {
-    const navbar = document.querySelector(".main-chat-nav");
+    // const navbar = document.querySelector(".main-chat-nav");
     const poststory = document.querySelector(".imgpost");
     const smallScreen = document.querySelector(".sm_nav_holder");
     if (window.pageYOffset > 0) {
-      navbar.classList.add("nav_show_scroll");
+      // navbar.classList.add("nav_show_scroll");
       poststory.classList.add("imgpost_scroll");
       smallScreen.classList.add("sm_nav_holder_scroll");
     } else {
-      navbar.classList.remove("nav_show_scroll");
+      // navbar.classList.remove("nav_show_scroll");
       poststory.classList.add("imgpost_scroll");
       smallScreen.classList.add("sm_nav_holder_scroll");
     }
@@ -284,7 +284,7 @@ const NavBar = ({socket}) => {
                   fontSize: "17px",
                 }}
               >
-                20
+                
               </span>
               <MdFaceRetouchingNatural className="sm_fa" />
             </div>

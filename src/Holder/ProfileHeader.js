@@ -14,7 +14,7 @@ import { AuthContext } from "../Context/AuthContext";
 import "./style.css";
 import { useLocation } from "react-router";
 
-const ProfileHeader = () => {
+const ProfileHeader = ({showProfileHandler}) => {
   const [profileImg1, setProfileImg1] = useState("");
   const [profileImg2, setProfileImg2] = useState("./image/thumbnail.jpg");
 
@@ -68,7 +68,7 @@ const ProfileHeader = () => {
     data.append("file.originalname", fileName);
 
     axios
-      .post(`users/userscover/${user._id}/coverPicture`, data)
+      .post(`users/userscover/${user._id}/coverPicture`, fileName)
       .then((response) => {
         // Handle response
         console.log(response);
@@ -121,13 +121,13 @@ const ProfileHeader = () => {
           onChange={(e) => setSetCoverPicture(e.target.files[0])}
         />
         <div id="edit">
-          {setCoverPicture === null ? (
-            <label htmlFor="input" className="image-upload edit_profile">
+          {/* {setCoverPicture === null ? ( */}
+            <label  className="image-upload edit_profile">
               edit profile
             </label>
-          ) : (
+          {/* ) : (
             <button onClick={mainCoverPic}>Upload coverPicture</button>
-          )}
+          )} */}
         </div>
         <div className="wallet_profile_img">
           {file ? (

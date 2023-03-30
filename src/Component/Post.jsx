@@ -178,14 +178,14 @@ const Post = ({ itemPost, socket }) => {
               <div className="post_img_holder">
                 {(user.profilePicture && (
                   <img
-                    src={`http://localhost:8800/${user.profilePicture}`}
+                    src={`http://localhost:7878/api/${user.profilePicture}`}
                     alt="image"
                   />
                 )) || <img src={profile} alt="image" />}
                 {/* <img
                   src={
                     user.profilePicture
-                      ? `//localhost:8800/${user.profilePicture}`
+                      ? `//localhost:7878/${user.profilePicture}`
                       : profile
                   }
                   alt="image"
@@ -207,7 +207,7 @@ const Post = ({ itemPost, socket }) => {
                       <img
                         src={
                           user.profilePicture
-                            ? `//localhost:8800/${user.profilePicture}`
+                            ? `//localhost:7878/${user.profilePicture}`
                             : profile
                         }
                         alt="image"
@@ -221,7 +221,7 @@ const Post = ({ itemPost, socket }) => {
                     {showFullContent ? itemPost.desc : limitedContent}
                     {!showFullContent && itemPost.desc.length > 40 && (
                       <button
-                        onClick={() => setShowFullContent(true)}
+                        onClick={() => setShowFullContent(!showFullContent)}
                         style={{
                           border: "none",
                           outline: "none",
@@ -229,7 +229,7 @@ const Post = ({ itemPost, socket }) => {
                           marginLeft: "5px",
                         }}
                       >
-                        Read More...
+                        Read More
                       </button>
                     )}
                   </p>
@@ -260,14 +260,14 @@ const Post = ({ itemPost, socket }) => {
                   ref={videoRef}
                 >
                   <source
-                    src={`//localhost:8800/${itemPost.img}`}
+                    src={`//localhost:7878/${itemPost.img}`}
                     type="video/mp4"
                   />
                 </video>
               ) : (
                 //   <FaPlay className="play-button" />
                 // </div>
-                <img src={`//localhost:8800/${itemPost.img}`} alt="image" />
+                <img src={`//localhost:7878/${itemPost.img}`} alt="image" />
               )}
             </div>
             {itemPost.imgmut.length >= 1 ? (
@@ -284,13 +284,13 @@ const Post = ({ itemPost, socket }) => {
                         height="100%"
                       >
                         <source
-                          src={`//localhost:8800/${itemPost.img}`}
+                          src={`//localhost:7878/${itemPost.img}`}
                           type="video/mp4"
                         />
                       </video>
                     ) : (
                       <img
-                        src={`//localhost:8800/${itemPost.img}`}
+                        src={`//localhost:7878/${itemPost.img}`}
                         alt="image"
                       />
                     )}
@@ -308,7 +308,7 @@ const Post = ({ itemPost, socket }) => {
                             height="100%"
                           >
                             <source
-                              src={`//localhost:8800/${item}`}
+                              src={`//localhost:7878/${item}`}
                               type="video/mp4"
                             />
                           </video>
@@ -317,7 +317,7 @@ const Post = ({ itemPost, socket }) => {
                     }
                     return (
                       <div className="post_im_box3" key={index}>
-                        <img src={`//localhost:8800/${item}`} alt="image" />
+                        <img src={`//localhost:7878/${item}`} alt="image" />
                       </div>
                     );
                   })
@@ -338,10 +338,7 @@ const Post = ({ itemPost, socket }) => {
             </a>
           </div>
           <div className="post_icons">
-            <button
-              className="action_btn"
-              onClick={() => handleLike(1)}
-            >
+            <button className="action_btn" onClick={() => handleLike(1)}>
               <FaHeart className="post-ic-heart post_fa" />
             </button>
             <span>{like}</span>

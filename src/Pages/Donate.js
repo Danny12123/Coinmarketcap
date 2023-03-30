@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 //Route
 import { useParams } from "react-router-dom";
 import axios from 'axios';
-import { fetchSuccess } from '../Redux/videoSlice';
 import MyStories from '../Component/MyStories';
 import MyFavouSto from '../Component/MyFavouSto';
 import Completed from '../Component/Completed';
@@ -97,7 +96,24 @@ const Donate = () => {
     }
     fetchPostUser()
   },[channel])
-  // console.log(channel);
+  // console.log(channel.img && channel.img.slice(-2));
+
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
+
+  // const handleScroll = () => {
+  //   const donsate = document.querySelector(".donate");
+
+  //   if (window.pageYOffset > 0) {
+  //     donsate.classList.add("donatescroll");
+      
+  //   } else {
+  //     donsate.classList.remove("donatescroll");
+      
+  //   }
+  // };
   
   return (
     <div>
@@ -117,23 +133,23 @@ const Donate = () => {
               modules={[FreeMode, Navigation, Thumbs]}
               className="mySwiper2"
             >
-              {channel.img.slice(-2).toLowerCase() === "p4" ? (
+              {channel.img && channel.img.slice(-2).toLowerCase() === "p4" ? (
                 <SwiperSlide>
                   <video controls width="100%" height="100%">
                     <source
-                      src={`//localhost:8800/${channel.img}`}
+                      src={`//localhost:7878/${channel.img}`}
                       type="video/mp4"
                     />
                   </video>
                 </SwiperSlide>
               ) : (
                 <SwiperSlide>
-                  <img src={`//localhost:8800/${channel.img}`} />
+                  <img src={`//localhost:7878/${channel.img}`} />
                 </SwiperSlide>
               )}
 
               {/* <SwiperSlide>
-                <img src={`//localhost:8800/${channel.img}`} />
+                <img src={`//localhost:7878/${channel.img}`} />
               </SwiperSlide> */}
 
               {channel.imgmut &&
@@ -144,7 +160,7 @@ const Donate = () => {
                         <div key={index}>
                           <video controls width="100%" height="100%">
                             <source
-                              src={`//localhost:8800/${image}`}
+                              src={`//localhost:7878/${image}`}
                               type="video/mp4"
                             />
                           </video>
@@ -154,7 +170,7 @@ const Donate = () => {
                   }
                   return (
                     <SwiperSlide>
-                      <img src={`//localhost:8800/${image}`} key={index} />
+                      <img src={`//localhost:7878/${image}`} key={index} />
                     </SwiperSlide>
                   );
                 })}
@@ -169,7 +185,7 @@ const Donate = () => {
               className="mySwiper"
             >
               <SwiperSlide>
-                <img src={`//localhost:8800/${channel.img}`} />
+                <img src={`//localhost:7878/${channel.img}`} />
               </SwiperSlide>
               {channel.imgmut &&
                 channel.imgmut.map((image, index) => {
@@ -179,7 +195,7 @@ const Donate = () => {
                         <div key={index}>
                           <video controls width="100%" height="100%">
                             <source
-                              src={`//localhost:8800/${image}`}
+                              src={`//localhost:7878/${image}`}
                               type="video/mp4"
                             />
                           </video>
@@ -189,7 +205,7 @@ const Donate = () => {
                   }
                   return (
                     <SwiperSlide>
-                      <img src={`//localhost:8800/${image}`} key={index} />
+                      <img src={`//localhost:7878/${image}`} key={index} />
                     </SwiperSlide>
                   );
                 })}
@@ -295,7 +311,7 @@ const Donate = () => {
           <h6>Share Danny post</h6>
           <div className="item_sh">
             <div className="item_img">
-              <img src={`//localhost:8800/${channel.img}`} />
+              <img src={`//localhost:7878/${channel.img}`} />
             </div>
           </div>
           <ShareItem description={channel} />

@@ -1,7 +1,9 @@
 :root {
     --gradient: linear-gradient(as right, #FD447D, blue)
 }
-
+.holder_profile {
+    /* position: relative; */
+}
 #profile_header {
     padding: 20px 50px ;
     width: 100%;
@@ -322,6 +324,40 @@
 .pro_ro_disactive {
     display: none;
 }
+/*---------------------------EDIT PROFILE------*/
+.active_profile {
+    width: 100%;
+    height: 100px;
+    background-color: #000000c3;
+    display: block;
+    position: relative;
+}
+.disactive_profile {
+    display: none;
+}
+.edit_profile {
+    position:  absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 70vh;
+    background-color: #cccc;
+    padding: 15px;
+}
+.coverpic {
+    width: 100%;
+    height: 20vh;
+    background-color: #2556FA;
+    position: relative;
+}
+.coverpic img {
+    width:100%;
+    object-fit: cover;
+}
+
+/*---------------------------//EDIT PROFILE------*/
+
 
 
 @media only screen and (max-width: 425px) {

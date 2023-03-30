@@ -2,8 +2,11 @@
 .donate {
     width: 100%;
     height: inherit;
-    padding: 10px;
+    padding: 10px ;
     /* position: relative; */
+}
+.donatescroll {
+    
 }
 .do_box {
     position: absolute;
@@ -299,12 +302,12 @@
     .donate {
     width: 100%;
     height: inherit;
+    padding-top: 70px;
 }
     .donate .donate_box {
     width: 100%;
     height: inherit;
     margin: 10px;
-    /* background-color: black; */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(355px, 1fr));
 }
@@ -350,7 +353,7 @@
     .donate .donate_box .don_box_2 {
     width: 90%;
     height: 50vh;
-    padding: 35px 50px;
+    padding: 35px 20px;
 }
 .donate .donate_box .don_box_2 h5 {
     font-size: 16px;

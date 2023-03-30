@@ -64,78 +64,99 @@ const Profile = ({ recentActive, setRecentActive }) => {
     };
     fetchUser();
   }, [user.username]);
+
+
+  //upload profile
+  const [openPorfile, setOpenPorfile] = useState(false)
+
+  const showProfileHandler = () => {
+    setOpenPorfile(!openPorfile)
+  }
+
+  
   
   return (
-    <div className="holder_wallet">
-      <NavBar />
+    <>
+      <div className="holder_profile">
+        <NavBar />
 
-      <ProfileHeader user={userBox} />
+        <ProfileHeader user={userBox} showProfileHandler={showProfileHandler}/>
 
-      <ProfileInfo
-        // userpost={userpost}
-        user={userBox}
-        recentActive={recentActive}
-        setRecentActive={setRecentActive}
-        upload={upload}
-      />
+        <ProfileInfo
+          // userpost={userpost}
+          user={userBox}
+          recentActive={recentActive}
+          setRecentActive={setRecentActive}
+          upload={upload}
+        />
 
-      <section id="profile_rout">
-        <div className="pro_rut_container">
-          <h5
-            className={toggleTabs === 1 ? "tabsActive" : ""}
-            onClick={() => toggleTab(1)}
+        <section id="profile_rout">
+          <div className="pro_rut_container">
+            <h5
+              className={toggleTabs === 1 ? "tabsActive" : ""}
+              onClick={() => toggleTab(1)}
+            >
+              My Stories
+            </h5>
+            <h5
+              className={toggleTabs === 2 ? "tabsActive" : ""}
+              onClick={() => toggleTab(2)}
+            >
+              Favourite Stories
+            </h5>
+            <h5
+              className={toggleTabs === 3 ? "tabsActive" : ""}
+              onClick={() => toggleTab(3)}
+            >
+              Completed
+            </h5>
+          </div>
+        </section>
+
+        <section>
+          <div
+            className={
+              toggleTabs === 1 ? "my_stories pro_ro_active" : "pro_ro_disactive"
+            }
           >
-            My Stories
-          </h5>
-          <h5
-            className={toggleTabs === 2 ? "tabsActive" : ""}
-            onClick={() => toggleTab(2)}
+            <Postcontent username={user.username} />
+            {/* <MyStories username="Danny1" /> */}
+          </div>
+          <div
+            className={
+              toggleTabs === 2 ? "favourite pro_ro_active" : "pro_ro_disactive"
+            }
           >
-            Favourite Stories
-          </h5>
-          <h5
-            className={toggleTabs === 3 ? "tabsActive" : ""}
-            onClick={() => toggleTab(3)}
+            <MyFavouSto />{" "}
+          </div>
+          <div
+            className={
+              toggleTabs === 3 ? "completed pro_ro_active" : "pro_ro_disactive"
+            }
           >
-            Completed
-          </h5>
-        </div>
-      </section>
+            <Completed />{" "}
+          </div>
+        </section>
 
-      <section>
-        <div
-          className={
-            toggleTabs === 1 ? "my_stories pro_ro_active" : "pro_ro_disactive"
-          }
-        >
-          <Postcontent username={user.username} />
-          {/* <MyStories username="Danny1" /> */}
-        </div>
-        <div
-          className={
-            toggleTabs === 2 ? "favourite pro_ro_active" : "pro_ro_disactive"
-          }
-        >
-          <MyFavouSto />{" "}
-        </div>
-        <div
-          className={
-            toggleTabs === 3 ? "completed pro_ro_active" : "pro_ro_disactive"
-          }
-        >
-          <Completed />{" "}
-        </div>
-      </section>
+        {/*To upload a story*/}
+        <ProfileStory
+          isActive={isActive}
+          uploadStory={uploadStory}
+          uploadStoryVideo={uploadStoryVideo}
+          upload={upload}
+          uploadImaVid={uploadImaVid}
+        />
+      </div>
 
-      {/*To upload a story*/}
-      <ProfileStory
-        isActive={isActive}
-        uploadStory={uploadStory}
-        uploadStoryVideo={uploadStoryVideo}
-        upload={upload}
-        uploadImaVid={uploadImaVid}
-      />
-    </div>
+      // <div className={openPorfile ? "active_profile":"disactive_profile"}>
+      //   <div className="edit_profile">
+      //     <div className="coverpic">
+            
+      //     </div>
+      //       <div className="profilepic"></div>
+      //   </div>
+      // </div>
+    </>
   );
 };
 

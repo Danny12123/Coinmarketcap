@@ -63,7 +63,7 @@ router.post("/send-verification-email", (req, res) => {
   const token = jwt.sign({ userId }, "vksdndosdfnvi24t8349tuen984", { expiresIn: "1h" });
   // const token = jwt.sign({ username }, "your_secret_key", { expiresIn: "1h" });
 
-  const mailOptions = {
+  let mailOptions = {
     //email must be will verfi
     from: "storytechpaartnersltd@gmail.com",
     to: email,
@@ -124,10 +124,24 @@ router.post("/login", async (req,res)=>{
     //   }
     //   return res.status(400).send({message: "An Email has been sent to your account please verify"})
     //  }
+    // req.session.user = res.body.email
      res.status(200).json(user)
   }catch(err){
     res.status(500).json(err)
   }
- 
+})
+router.get('/logout', (req, res)=> {
+  try{
+    req.session.destroy((err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send("Account has been logout");
+      }
+    });
+  }catch(err){
+    console.log(err)
+  }
+  
 })
 module.exports = router;

@@ -15,6 +15,7 @@ const Comment = require('./route/comment');
 const Coinbase = require("coinbase");
 const suerRouter = require('./route/Suers')
 const sauthRouter = require('./route/Sauth')
+const profileRouter = require('./route/profile')
 const cors = require('cors');
 const {getStorage, ref, getDownloadURL, uploadBytesResumable} = require("firebase/storage");
 const { initializeApp } = require("firebase/app");
@@ -150,7 +151,8 @@ mongoose
   app.use("/api/comment", Comment);
   app.use("/api/susers", suerRouter);
   app.use("/api/sauth", sauthRouter);
+  app.use("/api/profile", profileRouter);
 
 
 
-app.listen(8800,()=> console.log("Backend is running!"))
+app.listen(7878,()=> console.log("Backend is running!"))

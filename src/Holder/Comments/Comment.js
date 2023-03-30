@@ -10,6 +10,8 @@ import "../../Styles/comment.css";
 import CommentForm from "./CommetnForm";
 import axios from "axios";
 import { AuthContext } from "../../Context/AuthContext";
+import { useSelector, useDispatch } from "react-redux";
+import {CommentAction} from '../../Redax/Action'
 
 const Comment = ({ currentUserId, postId }) => {
   const [backComments, setBackComment] = useState([]);
@@ -19,6 +21,7 @@ const Comment = ({ currentUserId, postId }) => {
   );
   // console.log(backComments);
 
+   const dispatch = useDispatch();
   const getReplies = (commentId) => {
     return backComments
       .filter((backComments) => backComments.parentId === commentId)
@@ -91,6 +94,13 @@ const Comment = ({ currentUserId, postId }) => {
       try {
         const res = await axios.get(`/comment//${postId}`);
         // setBackComment(res.data);
+        // dispatch(
+        //   CommentAction(
+        //     res.data.sort((p1, p2) => {
+        //       return new Date(p2.createdAt) - new Date(p1.createdAt);
+        //     })
+        //   )
+        // );
         setBackComment(res.data.sort((p1,p2)=>{
         return new Date(p2.createdAt) - new Date(p1.createdAt)
       }))

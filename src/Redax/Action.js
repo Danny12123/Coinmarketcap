@@ -12,3 +12,9 @@ export const UserAction = (users) => {
       payload: users,
     };
 }
+export const CommentAction = (comment) => {
+    return {
+      type: "COMMENT",
+      payload: comment,
+    };
+}
